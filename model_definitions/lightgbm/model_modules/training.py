@@ -44,16 +44,9 @@ def train(context: ModelContext, **kwargs):
 
     print("Saved trained model")
 
-    from lightgbm import plot_importance
-    model["lgbmc"].get_booster().feature_names = feature_names
-    plot_importance(model["lgbmc"].get_booster(), max_num_features=10)
-    save_plot("feature_importance.png", context=context)
-
-    feature_importance = model["lgbmc"].get_booster().get_score(importance_type="weight")
-
-    record_training_stats(train_df,
-                          features=feature_names,
-                          targets=[target_name],
-                          categorical=[target_name],
-                          feature_importance=feature_importance,
-                          context=context)
+    #record_training_stats(train_df,
+                          #features=feature_names,
+                          #targets=[target_name],
+                          #categorical=[target_name],
+                          #feature_importance=feature_importance,
+                          #context=context)
