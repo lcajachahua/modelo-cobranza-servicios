@@ -44,6 +44,13 @@ def train(context: ModelContext, **kwargs):
 
     print("Saved trained model")
 
+    from xgboost import plot_importance
+    model["xgb"].get_booster().feature_names = feature_names
+    plot_importance(model["xgb"].get_booster(), max_num_features=10)
+    save_plot("feature_importance.png", context=context)
+
+    feature_importance = model["xgb"].get_booster().get_score(importance_type="weight")
+
     record_training_stats(train_df,
                           features=feature_names,
                           targets=[target_name],
