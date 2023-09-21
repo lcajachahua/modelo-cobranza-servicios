@@ -29,7 +29,7 @@ def train(context: ModelContext, **kwargs):
     print("Starting training...")
 
     # fit model to training data
-    model = Pipeline([('lgbmc', LGBMClassifier(learning_rate=context.hyperparams["learning_rate"], max_depth=context.hyperparams["max_depth"], num_leaves=context.hyperparams["num_leaves"]))])
+    model = Pipeline([('lgbmc', LGBMClassifier(objective = "binary", learning_rate=context.hyperparams["learning_rate"], max_depth=context.hyperparams["max_depth"], num_leaves=context.hyperparams["num_leaves"]))])
 
     model.fit(X_train, y_train)
 

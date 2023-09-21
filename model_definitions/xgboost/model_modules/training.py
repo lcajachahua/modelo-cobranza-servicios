@@ -31,7 +31,7 @@ def train(context: ModelContext, **kwargs):
 
     # fit model to training data
     model = Pipeline([('scaler', MinMaxScaler()),
-                      ('xgb', XGBClassifier(eta=context.hyperparams["eta"],
+                      ('xgb', XGBClassifier(eval_metric='aucpr', n_estimators=context.hyperparams["n_estimators"],
                                             max_depth=context.hyperparams["max_depth"]))])
 
     model.fit(X_train, y_train)
