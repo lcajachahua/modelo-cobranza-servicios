@@ -43,7 +43,7 @@ def train(context: ModelContext, **kwargs):
 
     # we can also save as pmml so it can be used for In-Vantage scoring etc.
     lgb_to_pmml(pipeline=model, col_names=feature_names, target_name=target_name,
-                pmml_f_name=f"{context.artifact_output_path}/model.pmml")
+                    pmml_f_name=f"{context.artifact_output_path}/model.pmml")
 
     print("Saved trained model")
 

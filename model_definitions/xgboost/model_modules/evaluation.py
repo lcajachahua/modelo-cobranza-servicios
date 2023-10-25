@@ -32,7 +32,7 @@ def evaluate(context: ModelContext, **kwargs):
     y_pred = model.predict(X_test)
 
     y_pred_tdf = pd.DataFrame(y_pred, columns=[target_name])
-    y_pred_tdf["PARTY_ID"] = test_pdf["PARTY_ID"].values
+    y_pred_tdf["party_id"] = test_pdf["party_id"].values
 
     evaluation = {
         'Accuracy': '{:.2f}'.format(metrics.accuracy_score(y_test, y_pred)),
@@ -58,6 +58,7 @@ def evaluate(context: ModelContext, **kwargs):
 
     shap.summary_plot(shap_values, X_test, feature_names=feature_names,
                       show=False, plot_size=(12, 8), plot_type='bar')
+
     save_plot('SHAP Feature Importance', context=context)
 
     feature_importance = pd.DataFrame(list(zip(feature_names, np.abs(shap_values).mean(0))),
@@ -65,9 +66,12 @@ def evaluate(context: ModelContext, **kwargs):
     feature_importance = feature_importance.set_index("col_name").T.to_dict(orient='records')[0]
 
     predictions_table = "evaluation_preds_tmp"
+
     copy_to_sql(df=y_pred_tdf, table_name=predictions_table, index=False, if_exists="replace", temporary=True)
+    
     print("Validation finished")
-    #record_evaluation_stats(features_df=test_df,
-                            #predicted_df=DataFrame.from_query(f"SELECT * FROM {predictions_table}"),
-                            #importance=feature_importance,
-                            #context=context)
+    
+    record_evaluation_stats(features_df=test_df,
+                            predicted_df=DataFrame.from_query(f"SELECT * FROM {predictions_table}"),
+                            importance=feature_importance,
+                            context=context)
