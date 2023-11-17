@@ -88,7 +88,7 @@ colocar el check a la variable target (tar)
 
     Database: demo_user
     Table: matriz_modelo_predictions
-    Entity selection: select * from matriz_score
+    Entity selection: select party_id,sex,pay_1,age,income,cv_lpay_tot,cv_lbill_tot,cant_pay_may0,bill_amt1,log_bill_amt1,avg_lpay_tot,std_pay_tot from matriz_score
 
 
 Luego de ingresar el query, presione “PREVIEW DATA” y con eso ya puede finalizar, presionando “CREATE”.

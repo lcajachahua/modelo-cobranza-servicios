@@ -1,6 +1,0 @@
-{
-  "id": "bf6a52b2-b595-4358-ab4f-24fb51a85c45",
-  "name": "Modelo de Cobranzas - LightGBM",
-  "description": "Modelo de Cobranzas utilizando el algoritmo LightGBM - Challenger",
-  "language": "python"
-}
