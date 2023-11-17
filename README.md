@@ -1,5 +1,10 @@
 # Demo de ModelOps: Modelo de Cobranzas
 
+
+En esta Demo, implementaremos dos modelos de cobranzas en producción. El objetivo es calcular la probabilidad de que un cliente no cumpla con pagar su cuota. Los algoritmos que se implementan son XGBoost y LightGBM. Se considera que ya hubo una fase previa de desarrollo donde los dos modelos elegidos tuvieron un buen desempeño en las métricas de acierto.
+
+Este ejemplo se puede implementar en un ambiente de ClearScape Analytics Experience (https://clearscape.teradata.com)
+
 **Paso 1: Clona el repositorio desde la Terminal de Jupyterlab**
 
 File -> New Launcher -> Terminal (Icono $ grande sobre un recuadro negro)
@@ -14,7 +19,7 @@ git clone https://github.com/lcajachahua/modelo-cobranza-servicios.git
 
 **Paso 2: Carga los datos del Proyecto**
 
-Dentro de la carpeta 'Data' se encuentra el notebook 'Data_Loading.ipynb' que nos ayuda a cargar los datos para entrenar y desplegar el modelo.Abra el notebook y ejecute el primer bloque de códigos.
+Dentro de la carpeta 'Data' se encuentra el notebook 'Data_Loading.ipynb' que nos ayuda a cargar los datos para entrenar y desplegar el modelo. Abra el notebook y ejecute el primer bloque de códigos.
 
 
 
@@ -96,6 +101,11 @@ Ingresar los siguientes datos
     Name: cobranzas_train
     Description: Dataset de Entrenamiento para el Modelo de Cobranzas
 
+Presione “NEXT” y pegue el siguiente Query:
+
+    select party_id, tar from matriz_modelo where party_id mod 2<>1
+
+
 Finalice la creación presionando el boton “CREATE”
 
 
@@ -114,5 +124,5 @@ Finalice la creación presionando el boton “CREATE”. Al final, podemos ver a
 
 **Paso 5: El modelo está listo para ser utilizado desde el entorno del proyecto**
 
-Regrese a la vista del Proyecto e ingrese para poder iniciar con la ejecución del Modelo
+Regrese a la vista del Proyecto e ingrese para poder iniciar con el ciclo de vida del Modelo: Entrenamiento, Evaluación, Aprobación, Despliegue y Monitoreo
 
