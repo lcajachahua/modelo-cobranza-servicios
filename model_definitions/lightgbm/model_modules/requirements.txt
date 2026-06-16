@@ -7,5 +7,6 @@ shap==0.41.0
 matplotlib==3.5.2
 teradataml==17.10.0.1
 nyoka==4.3.0
-aoa==7.0.1
+teradatamodelops==7.0.3
 SQLAlchemy==1.4.46
+tqdm==4.66.3
